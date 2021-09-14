@@ -1,4 +1,4 @@
-# arch-xudevless
+# arch-udevless
 PKGBUILDs for Archlinux-based distros compiled without udev/xudev dependency
 
 This repo contains PKGBUILD files to build software which require systemd-udev or xudev without these dependencies,
