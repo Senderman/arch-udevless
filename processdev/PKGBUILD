@@ -1,0 +1,29 @@
+# Maintainer: Platon Ryzhikov <ihummer63@yandex.ru>
+
+pkgname=processdev
+pkgver=20210915
+pkgrel=1
+pkgdesc='A script to replace udev rules in udevless environment'
+arch=('i686' 'x86_64' 'aarch64')
+url="https://github.com/Senderman/arch-udevless"
+depends=(bash)
+license=('MIT/X')
+source=('processdev'
+        '99-remove_links')
+optdepends=('processdev-modprobe: to load modules on each event (not needed for nldev and mdevd)'
+            'processdev-uuid: to create /dev/disk/by-{part,}uuid symlinks'
+            'processdev-cdrom: to create /dev/cdrom symlink'
+            'processdev-lvm2: to create LVM2 volumes symlinks'
+            'processdev-pci: to create symlinks to devices attached to PCI'
+            'processdev-platform: to create symlinks to devices attached vis platform bus'
+            'processdev-pulseaudio: to reload pulseaudio devices on hotplug events'
+            'processdev-libudev-zero: to call libudev-zero helper (not needed for nldev and mdevd)')
+
+sha256sums=('4385f562e987f11a6b676822fe40777c0caf5691aa045948018e38b95a68bb33'
+            'eb561c3f2f271c52f47006866b2adde2955687aefae7c9f00ace3df7adf54195')
+
+package() {
+	cd "${srcdir}"
+	install -m744 -D processdev ${pkgdir}/etc/processdev/processdev
+	install -m644 -D 99-remove_links $pkgdir/etc/processdev/remove/99-remove_links
+}

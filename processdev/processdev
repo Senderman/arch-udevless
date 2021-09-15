@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for cond in $(ls /etc/processdev/$ACTION); do
+. /etc/processdev/$ACTION/$cond
+done &
