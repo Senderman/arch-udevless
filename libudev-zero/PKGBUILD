@@ -1,0 +1,43 @@
+# Maintainer: Platon Ryzhikov <ihummer63@yandex.ru>
+
+pkgname=libudev-zero
+pkgver=1.0.0
+pkgrel=1
+libudev_ver=1-64
+so_ver=1.6.3
+pkgdesc="Daemonless replacement for libudev "
+arch=('x86_64' 'aarch64')
+url="https://github.com/illiliti/libudev-zero"
+license=('GPL')
+makedepends=('glibc' 'make')
+provides=('libeudev' 'libudev' "libudev.so=$libudev_ver")
+conflicts=('libudev')
+source=(${pkgname}-${pkgver}.tar.gz::https://github.com/illiliti/libudev-zero/archive/refs/tags/${pkgver}.tar.gz
+        artix-install.patch)
+sha256sums=('68c20aefd7aa89abe446cf5ec76f5846315ded719f0665eabed9261cc3c7f47a'
+            '1f8a6dc821c616b4c57c3e58b9cf6e5b5e6bd319872e20eea11e9f48b696a700')
+
+prepare() {
+	cd ${srcdir}/${pkgname}-${pkgver}
+
+	patch -p0 -i ../artix-install.patch
+}
+
+build() {
+	cd ${srcdir}/${pkgname}-${pkgver}
+
+	LIBUDEV_VER="${so_ver}" make
+
+	msg "Compiling helper"
+	cd contrib
+	gcc $CFLAGS -o libudev-helper helper.c
+}
+
+package() {
+	cd ${srcdir}/${pkgname}-${pkgver}
+
+	LIBUDEV_VER="${so_ver}" make DESTDIR="${pkgdir}" PREFIX="/usr" install
+
+	install -Dm755 contrib/libudev-helper "${pkgdir}"/usr/bin/libudev-helper
+}
+
