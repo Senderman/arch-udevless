@@ -1,0 +1,52 @@
+# Maintainer: Platon Ryzhikov <ihummer63@yandex.ru>
+
+pkgname=nldev
+pkgver=0.4
+pkgrel=1
+pkgdesc="frontend for mdev, replacing the over-engineered udevd"
+url="http://git.r-36.net/nldev/"
+arch=('i686' 'x86_64' 'aarch64')
+makedepends=(git)
+depends=('smdev' 'libudev-zero')
+license=('MIT')
+_commit=662ba2
+source=("git://git.r-36.net/nldev#commit=$_commit"
+        "0001-increase_buffer.patch"
+        'config.mk'
+        'config.h'
+        'modprobe_env'
+        'hook'
+        'install')
+sha256sums=('SKIP'
+            '0dcf94eb46430ef0e77222722bd00932013ab4b83195bbe7426f119d1e487e4a'
+            'ace90f46faf17d740b32e46ce48234691e5a30db72aed561bf761b2d628eca32'
+            '826d113ac3dfa5e5fdfc7ca8dd7ceca1cc3e47081e068250636b65512f56868f'
+            'd3103ccacb8394ff1f6843eae72e6e2bff575a3503cb28c990febad42966f39e'
+            '46d22eb61994859084520aef06a288f3742ceebf5b7ba2c7408892c490cec2e0'
+            'd30df58b7f02ea90b1a796e59294e62c8acc36ac5ec20f7f9c019a3a8b04f93c')
+
+provides=('udev' 'eudev')
+conflicts=('udev')
+
+prepare() {
+	cd "${srcdir}/${pkgname}"
+	patch -Np1 -i ../0001-increase_buffer.patch
+
+	cp ../config.mk ./
+	cp ../config.h ./
+}
+
+build() {
+	cd "$srcdir/$pkgname"
+	make
+}
+
+package() {
+	cd "$srcdir/$pkgname"
+	make DESTDIR="$pkgdir" PREFIX=/usr install
+	install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+	cd "$srcdir"
+	install -m644 -D hook "$pkgdir/usr/lib/initcpio/hooks/nldev"
+	install -m644 -D install "$pkgdir/usr/lib/initcpio/install/nldev"
+	install -m755 -D modprobe_env "$pkgdir/usr/bin/modprobe_env"
+}
