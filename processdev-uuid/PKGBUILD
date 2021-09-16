@@ -1,0 +1,16 @@
+# Maintainer: Platon Ryzhikov <ihummer63@yandex.ru>
+
+pkgname=processdev-uuid
+pkgver=20210916
+pkgrel=1
+pkgdesc="Add block devices symlinks with processdev"
+arch=('any')
+licence=('MIT')
+groups=('processdev-scripts')
+depends=('processdev')
+source=("01-uuid")
+sha256sums=('6fecb09e89bddd88126dcf5c5710904b907510e719c6084a357d99ce82456554')
+
+package() {
+	install -m644 -D 01-uuid ${pkgdir}/etc/processdev/add/01-uuid
+}

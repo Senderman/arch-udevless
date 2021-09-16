@@ -1,0 +1,16 @@
+# Maintainer: Platon Ryzhikov <ihummer63@yandex.ru>
+
+pkgname=processdev-pci
+pkgver=20210915
+pkgrel=1
+pkgdesc="Add links to pci devices in /dev with processdev"
+arch=('any')
+licence=('MIT')
+groups=('processdev-scripts')
+depends=('smdev')
+source=("20-pci")
+sha256sums=('25bea2f45a333cab1ea7e278895a35b663fe7501b553c30e03db7cc28954d539')
+
+package() {
+	install -m644 -D 20-pci ${pkgdir}/etc/processdev/add/20-pci
+}

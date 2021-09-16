@@ -1,0 +1,16 @@
+# Maintainer: Platon Ryzhikov <ihummer63@yandex.ru>
+
+pkgname=processdev-platform
+pkgver=20210602
+pkgrel=1
+pkgdesc="Add links to platform devices in /dev with processdev"
+arch=('any')
+licence=('MIT')
+groups=('processdev-scripts')
+depends=('processdev')
+source=("20-platform")
+sha256sums=('4e40af254818d36c82d79748ef41e38694c8103da1bc63606bb68bcc51572e03')
+
+package() {
+	install -m644 -D 20-platform ${pkgdir}/etc/smdev/processdev/20-platform
+}

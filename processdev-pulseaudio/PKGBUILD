@@ -1,0 +1,20 @@
+# Maintainer: Senderman <doletov.fyodor@yandex.ru>
+
+pkgname=processdev-pulseaudio
+pkgdesc="Reload pulseaudio devices with processdev"
+pkgver=20210916
+pkgrel=1
+arch=('any')
+url="https://aur.archlinux.org/packages/$pkgname"
+depends=('processdev' 'pulseaudio')
+license=('Apache')
+source=('40-pulse' 'pulseaudio-processdev-reload')
+sha256sums=('b9e6b8c054ddf0f58c4c4c8ce4251228bffa886525abdef8355b4ec9e01c5ceb'
+            '221401cd167d2c70ceefacb2005bcb59d34e5a7fdadb8920b0714b9f404aa592')
+install=$pkgname.install
+
+package() {
+    install -Dm0644 $srcdir/40-pulse $pkgdir/etc/processdev/add/40-pulse
+    install -Dm0644 $srcdir/40-pulse $pkgdir/etc/processdev/remove/40-pulse
+    install -Dm0755 $srcdir/pulseaudio-processdev-reload $pkgdir/usr/bin/pulseaudio-processdev-reload
+}

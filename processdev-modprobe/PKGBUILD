@@ -1,0 +1,16 @@
+# Maintainer: Platon Ryzhikov <ihummer63@yandex.ru>
+
+pkgname=processdev-modprobe
+pkgver=20210915
+pkgrel=1
+pkgdesc="load modules via processdev"
+arch=('any')
+licence=('MIT')
+groups=('processdev-scripts')
+depends=('processdev')
+source=("00-modprobe")
+sha256sums=('cd5783ae78f96020887f1c64dbb3bb917ef9af134646c04351c4e4636271045d')
+
+package() {
+	install -m644 -D 00-modprobe ${pkgdir}/etc/processdev/add/00-modprobe
+}

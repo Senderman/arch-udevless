@@ -1,0 +1,20 @@
+# Maintainer: Platon Ryzhikov <ihummer63@yandex.ru>
+
+pkgname=processdev-libudev-zero
+pkgver=20210915
+pkgrel=1
+pkgdesc="Trigger libudev-zero helper with smdev"
+arch=('any')
+licence=('MIT')
+groups=('processdev-scripts')
+depends=('processdev' 'libudev-zero')
+source=("30-libudev")
+sha256sums=('9438a1d32acf78bbbe74662c845f467f2b21978b6b6bea870b6f088082f9c8dd')
+
+package() {
+	install -m644 -D 30-libudev ${pkgdir}/etc/processdev/add/30-libudev
+	install -m644 -D 30-libudev ${pkgdir}/etc/processdev/remove/30-libudev
+	install -m644 -D 30-libudev ${pkgdir}/etc/processdev/bind/30-libudev
+	install -m644 -D 30-libudev ${pkgdir}/etc/processdev/change/30-libudev
+
+}
