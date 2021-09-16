@@ -1,0 +1,54 @@
+# Maintainer: Platon Ryzhikov <ihummer63@yandex.ru>
+
+pkgname=smdev
+pkgver=0.2.3
+pkgrel=1
+_rev=8d07540
+pkgdesc='Suckless mdev'
+arch=('i686' 'x86_64' 'aarch64')
+url="http://git.suckless.org/smdev/"
+makedepends=('git')
+depends=('processdev')
+provides=('mdev')
+license=('MIT/X')
+options=('strip')
+install='smdev.install'
+source=(
+    "git+https://git.suckless.org/smdev#commit=${_rev}"
+    'scan_all.patch'
+    'glibc.patch'
+    'usb_nodes.patch'
+    'config.h'
+    'initcpio.hook'
+    'initcpio.install'
+)
+
+sha256sums=('SKIP'
+            'dd4e7abf95eaf99bb8eb333a85dc5d2b1dac1399513da01183e52a07d8ac38d1'
+            '375fca3a458e547a12aa0eed54b4300218f5bee7f4182346ca32140c5acd6599'
+            'bc03a618a0f264013ef8da35c4a9dfe05e4da627d2a271f95c0ecbe0be4eea1a'
+            'f1582928f8afa1b2adba0f207ee2a599b5cdcd8656460fcf76cd1698bf1bc679'
+            '32675f752e6204ec96d2aecf9821be9a6c0dd3fef98086d47466b79f7651dbb9'
+            'c69c014000bf2b0452592c51e288cdb1e1992d0634709f9fab70c061bb339b72')
+
+
+prepare() {
+	cd "${srcdir}/${pkgname}"
+	cp "${srcdir}/config.h" config.h
+	patch -Np1 -i ../scan_all.patch
+	patch -Np1 -i ../glibc.patch
+	patch -Np1 -i ../usb_nodes.patch
+}
+
+build() {
+	cd "${srcdir}/${pkgname}"
+	make
+}
+
+package() {
+	cd "${srcdir}/${pkgname}"
+	make PREFIX=/usr DESTDIR="$pkgdir" install
+	cd "${srcdir}"
+	install -m644 -D initcpio.hook $pkgdir/usr/lib/initcpio/hooks/smdev
+	install -m644 -D initcpio.install $pkgdir/usr/lib/initcpio/install/smdev
+}
