@@ -1,16 +1,16 @@
 # Maintainer: Platon Ryzhikov <ihummer63@yandex.ru>
 
+_libudev_ver=1-64
+_so_ver=1.6.3
 pkgname=libudev-zero
 pkgver=1.0.0
 pkgrel=1
-libudev_ver=1-64
-so_ver=1.6.3
 pkgdesc="Daemonless replacement for libudev "
 arch=('x86_64' 'aarch64')
 url="https://github.com/illiliti/libudev-zero"
 license=('GPL')
 makedepends=('glibc' 'make')
-provides=('libeudev' 'libudev' "libudev.so=$libudev_ver")
+provides=('libeudev' 'libudev' "libudev.so=$_libudev_ver")
 conflicts=('libudev')
 source=(${pkgname}-${pkgver}.tar.gz::https://github.com/illiliti/libudev-zero/archive/refs/tags/${pkgver}.tar.gz
         artix-install.patch)
@@ -26,7 +26,7 @@ prepare() {
 build() {
 	cd ${srcdir}/${pkgname}-${pkgver}
 
-	LIBUDEV_VER="${so_ver}" make
+	LIBUDEV_VER="${_so_ver}" make
 
 	msg "Compiling helper"
 	cd contrib
@@ -36,7 +36,7 @@ build() {
 package() {
 	cd ${srcdir}/${pkgname}-${pkgver}
 
-	LIBUDEV_VER="${so_ver}" make DESTDIR="${pkgdir}" PREFIX="/usr" install
+	LIBUDEV_VER="${_so_ver}" make DESTDIR="${pkgdir}" PREFIX="/usr" install
 
 	install -Dm755 contrib/libudev-helper "${pkgdir}"/usr/bin/libudev-helper
 }

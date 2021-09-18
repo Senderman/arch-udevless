@@ -10,6 +10,7 @@
 
 pkgbase=lvm2-noudev
 pkgname=('lvm2-noudev' 'device-mapper-noudev')
+pkgdesc="lvm2 and device-mapper compiled without udev dependency"
 _tag='91a82455813bebce0949cb681369f370ce3105d5' # git rev-parse v${pkgver//./_}
 pkgver=2.03.13
 pkgrel=1

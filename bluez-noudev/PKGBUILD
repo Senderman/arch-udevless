@@ -6,6 +6,7 @@
 pkgbase=bluez-noudev
 _pkgbase=bluez
 pkgname=( {bluez,bluez-utils,bluez-libs,bluez-cups,bluez-plugins}'-noudev' )
+pkgdesc="bluez compiled without udev dependency"
 pkgver=5.61
 pkgrel=1
 url="http://www.bluez.org/"

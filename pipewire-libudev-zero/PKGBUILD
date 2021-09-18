@@ -23,7 +23,7 @@ optdepends=('pipewire-docs: Documentation'
             'gst-plugin-pipewire: GStreamer support'
             'pipewire-zeroconf: Zeroconf support')
 makedepends=(git meson doxygen xmltoman valgrind libpulse alsa-lib libusb
-             gst-plugins-base rtkit dbus sdl2 ncurses libsndfile bluez-libs sbc
+             gst-plugins-base dbus sdl2 ncurses libsndfile bluez-libs sbc
              libldac libfreeaptx libfdk-aac avahi webrtc-audio-processing)
 checkdepends=(desktop-file-utils)
 _commit=1924c2c29824955b5e763f1def6967f68e403c7c  # tags/0.3.34
