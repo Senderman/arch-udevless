@@ -9,6 +9,7 @@ to use this software on udevless environment, e.g. [mdev](https://git.busybox.ne
 * [smdev](https://git.suckless.org/smdev/log.html) - suckless uevent helper
 * [nldev](http://r-36.net/scm/nldev) - a daemon listening for uevents, a frontend for smdev
 * processdev - a script implementing rules for uevents post-processing, attempts to replace udev rules
+* lvm2-noudev - lvm2 and device-mapper compiled without udev dependency
 
 # Todo
 * improve processdev rules: some symlinks can be incorrect, some are missing
