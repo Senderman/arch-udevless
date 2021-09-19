@@ -12,5 +12,5 @@ source=("20-platform")
 sha256sums=('4e40af254818d36c82d79748ef41e38694c8103da1bc63606bb68bcc51572e03')
 
 package() {
-	install -m644 -D 20-platform ${pkgdir}/etc/smdev/processdev/20-platform
+	install -m644 -D 20-platform ${pkgdir}/etc/processdev/add/20-platform
 }
