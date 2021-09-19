@@ -7,7 +7,7 @@ pkgdesc="Add links to pci devices in /dev with processdev"
 arch=('any')
 license=('MIT')
 groups=('processdev-scripts')
-depends=('smdev')
+depends=('processdev')
 source=("20-pci")
 sha256sums=('25bea2f45a333cab1ea7e278895a35b663fe7501b553c30e03db7cc28954d539')
 

@@ -3,7 +3,7 @@
 pkgname=processdev-libudev-zero
 pkgver=20210915
 pkgrel=1
-pkgdesc="Trigger libudev-zero helper with smdev"
+pkgdesc="Trigger libudev-zero helper with processdev"
 arch=('any')
 license=('MIT')
 groups=('processdev-scripts')
