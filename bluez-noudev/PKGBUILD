@@ -12,7 +12,7 @@ pkgrel=1
 url="http://www.bluez.org/"
 arch=('x86_64')
 license=('GPL2')
-makedepends=('dbus' 'libical' 'udev' 'alsa-lib' 'json-c' 'ell' 'python-docutils')
+makedepends=('dbus' 'libical' 'alsa-lib' 'json-c' 'ell' 'python-docutils')
 source=("https://www.kernel.org/pub/linux/bluetooth/${_pkgbase}-${pkgver}.tar".{xz,sign}
         'https://gitea.artixlinux.org/packagesB/bluez/raw/commit/166e66178bfb669f9dd0d94ba0202208b441dff5/x86_64/extra/bluetooth.modprobe'
 )
