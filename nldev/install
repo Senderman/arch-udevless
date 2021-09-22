@@ -8,7 +8,7 @@ build() {
     add_binary /usr/bin/modprobe_env
     add_binary /usr/bin/libudev-helper
 
-    for file in /etc/smdev/add/*; do
+    for file in /etc/processdev/add/*; do
         add_file $file
     done
 
