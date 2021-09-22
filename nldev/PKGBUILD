@@ -23,7 +23,7 @@ sha256sums=('SKIP'
             '826d113ac3dfa5e5fdfc7ca8dd7ceca1cc3e47081e068250636b65512f56868f'
             'd3103ccacb8394ff1f6843eae72e6e2bff575a3503cb28c990febad42966f39e'
             '46d22eb61994859084520aef06a288f3742ceebf5b7ba2c7408892c490cec2e0'
-            'd30df58b7f02ea90b1a796e59294e62c8acc36ac5ec20f7f9c019a3a8b04f93c')
+            'a970ed2c3a563b48eacfb0e9228d984e8886fbf03dded5e0429d09d3088cdfa1')
 
 provides=('udev' 'eudev')
 conflicts=('udev')
